@@ -1,4 +1,4 @@
-#   
+# Send IP of RaspBerryPI via Email to user
 ## Steps
 - Make sure `netifaces` and `python-decouple` are installed, if not run following command
     ```
