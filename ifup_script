@@ -1,0 +1,4 @@
+#!/bin/bash
+
+su pi
+python /home/pi/send_ip/sendmail.py >> /home/pi/send_ip/log.log
