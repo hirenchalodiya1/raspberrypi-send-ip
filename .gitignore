@@ -133,3 +133,6 @@ dmypy.json
 
 # Environemt file
 .env
+
+# log file
+*.log
