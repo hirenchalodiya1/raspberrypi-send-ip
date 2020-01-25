@@ -2,19 +2,21 @@ import smtplib
 from email.mime.text import MIMEText
 from ip import get_ip
 from datetime import datetime as dt
-from decouple import config
+from decouple import config, Config, RepositoryEnv
 
+
+env_config = Config(RepositoryEnv(config("ENVFILE_PATH", cast=str)))
 print("[ " + dt.strftime(dt.now(), "%d-%m-%Y %H:%M:%S") + " ] IP in process..")
 
-ethernet_interface = config("ETHNET_INTERFACE", cast=str)
-wifi_interface = config("WIFI_INTERFACE", cast=str)
+ethernet_interface = env_config.get("ETHNET_INTERFACE", cast=str)
+wifi_interface = env_config.get("WIFI_INTERFACE", cast=str)
 
-smtp_ssl_host = config("HOST", cast=str)  # smtp.mail.yahoo.com
-smtp_ssl_port = config("PORT", cast=int)
-username = config("SMTP_USERNAME", cast=str)
-password = config("PASSWORD", cast=str)
-sender = config("SENDER", cast=str)
-targets = [config("RECEIVER", cast=str)]
+smtp_ssl_host = env_config.get("HOST", cast=str)  # smtp.mail.yahoo.com
+smtp_ssl_port = env_config.get("PORT", cast=int)
+username = env_config.get("SMTP_USERNAME", cast=str)
+password = env_config.get("PASSWORD", cast=str)
+sender = env_config.get("SENDER", cast=str)
+targets = [env_config.get("RECEIVER", cast=str)]
 
 text = "Raspberry PI information:\n\tEthernet(eth0): " + \
     get_ip(ethernet_interface) + "\n\tWIFI(wlan0): " + get_ip(wifi_interface)

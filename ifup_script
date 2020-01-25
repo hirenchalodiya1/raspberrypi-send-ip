@@ -1,4 +1,4 @@
 #!/bin/bash
 
 su pi
-python /home/pi/send_ip/sendmail.py >> /home/pi/send_ip/log.log
+ENVFILE_PATH=/home/pi/send_ip/.env python /home/pi/send_ip/sendmail.py >> /home/pi/send_ip/log.log
