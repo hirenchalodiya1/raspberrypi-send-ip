@@ -1,0 +1,1 @@
+install ifup_script /etc/network/if-up.d/send_ip
